@@ -4,35 +4,21 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
+using Microsoft.AspNet.SignalR;
 using Newtonsoft.Json;
+using Quobject.SocketIoClientDotNet.Client;
 using SlDataConsole.models;
-using SocketIo;
-using SocketIo.SocketTypes;
 
 namespace SlDataConsole
 {
-    class SocketHelper
+    class SocketHelper : Hub
     {
-	    private SocketIo.SocketIo socket;
-		public void StartSocket()
-	    {
-			socket = Io.Create("127.0.0.1", 4533, 4533, SocketHandlerType.Tcp);
-	    }
+   
+        public void DispatchEvents(string northEvents, string southEvents)
+        {
+            Clients.All.broadcastNorthEvents(northEvents);
+            Clients.All.broadcastSouthEvents(northEvents);
+        }
 
-	    public void CloseSocket()
-	    {
-		    socket.Close();
-	    }
-
-		public void DispatchEvents(string northEvents, string southEvents)
-	    {/*
-			socket.On("connect", () =>
-			{*/
-				socket.Emit("northbound", northEvents);
-				socket.Emit("southbound", southEvents);
-			//});
-		}
-
-	    
-}
+    }
 }

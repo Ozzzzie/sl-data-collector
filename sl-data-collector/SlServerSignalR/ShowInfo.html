@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="Scripts/jquery-1.6.4.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="/signalr/js"></script>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <ul id="response"></ul>
+    <script>
+        $(function () {
+            var myhub = $.connection.hub.createHubProxy("SlHub");
+
+
+            myhub.on('broadcastNorthEvents',
+                function myfunction(message) {
+                    $('#response').append(`<li>${message}}</li>`);
+                }); myhub.on('broadcastSouthEvents',
+                    function myfunction(message) {
+                        $('#response').append(`<li>${message}}</li>`);
+                    });
+            $.connection.hub.start().done(function myfunction() {
+                myhub.server.dispatchEvents();
+            });
+        })
+    </script>
+</body>
+</html>

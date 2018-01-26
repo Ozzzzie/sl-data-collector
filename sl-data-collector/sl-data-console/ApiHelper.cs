@@ -14,7 +14,7 @@ namespace SlDataConsole
 	    public ApiResponse GetInformation()
 	    {
 		    string json = string.Empty;
-		    string url = @"http://api.sl.se/api2/realtimedeparturesV4.json?key=&siteid=9206&timewindow=20&bus=false&train=false&tram=false";
+		    string url = @"http://api.sl.se/api2/realtimedeparturesV4.json?key=0a6c1b6c49f44bc8b36a3e4ed892940c&siteid=9206&timewindow=20&bus=false&train=false&tram=false";
 
 		    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 		    request.AutomaticDecompression = DecompressionMethods.GZip;

@@ -15,7 +15,7 @@ namespace SlDataConsole
 		    ApiResponse ar = ah.GetInformation();
 
 			SocketHelper sh = new SocketHelper();
-		    sh.StartSocket();
+		    //sh.StartSocket();
 
 		    while (true)
 		    {
